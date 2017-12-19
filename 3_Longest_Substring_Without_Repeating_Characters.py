@@ -40,7 +40,7 @@ class Solution(object):
             end = 1
             now_s = s[start:end]
             l = 1
-            result = now_s
+            # result = now_s
             i = 1
             while i < len(s):
                 if s[i] in now_s:
@@ -50,7 +50,7 @@ class Solution(object):
                 now_s = s[start:end]
                 temp_l = end - start
                 if temp_l > l:
-                    result = now_s
+                    # result = now_s
                     l = temp_l
                 i += 1
             # return result
@@ -61,33 +61,50 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        res = 0
-        left = 0
+        result = 0
+        start = 0
         d = {}
+        for i, v in enumerate(s):
+            if v in d and d[v] >= start:
+                start = d[v] + 1
+            d[v] = i
+            result = max(result, i - start + 1)
+        return result
 
-        for i, ch in enumerate(s):
-            if ch in d and d[ch] >= left:
-                left = d[ch] + 1
-            d[ch] = i
-            res = max(res, i - left + 1)
-        return res
+    def lengthOfLongestSubstring4(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        indexes = {}
+        longest = 0
+        last_repeating = -1
+        for i, c in enumerate(s):
+            if c in indexes and last_repeating < indexes[c]:
+                last_repeating = indexes[c]
+            if i - last_repeating > longest:
+                longest = i - last_repeating
+            indexes[c] = i
+
+        return longest
 
 
 if __name__ == '__main__':
     l = []
-    # l.append('abcabcbb')
-    # l.append('bbbbb')
-    # l.append('p')
-    # l.append('')
-    # l.append('dvdf')
-    # l.append('abcabd')
-    # l.append('abccabd')
-    # l.append('abcccabd')
-    # l.append('pwwkew')
+    l.append('abcabcbb')
+    l.append('bbbbb')
+    l.append('p')
+    l.append('')
+    l.append('dvdf')
+    l.append('abcabd')
+    l.append('abccabd')
+    l.append('abcccabd')
+    l.append('pwwkew')
     l.append('abcabdbbdefghhdefg')
-    # l.append('anviaj')
+    l.append('anviaj')
     solution = Solution()
     # print solution.lengthOfLongestSubstring(s)
     # print solution.lengthOfLongestSubstring2(s)
     for i, s in enumerate(l):
         print '%s\t%s\t%s' % (i, s, solution.lengthOfLongestSubstring3(s))
+        print '%s\t%s\t%s' % (i, s, solution.lengthOfLongestSubstring4(s))
