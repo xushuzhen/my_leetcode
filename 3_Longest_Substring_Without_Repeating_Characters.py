@@ -40,7 +40,6 @@ class Solution(object):
             end = 1
             now_s = s[start:end]
             l = 1
-            # result = now_s
             i = 1
             while i < len(s):
                 if s[i] in now_s:
@@ -50,10 +49,8 @@ class Solution(object):
                 now_s = s[start:end]
                 temp_l = end - start
                 if temp_l > l:
-                    # result = now_s
                     l = temp_l
                 i += 1
-            # return result
             return l
 
     def lengthOfLongestSubstring3(self, s):
@@ -80,12 +77,11 @@ class Solution(object):
         longest = 0
         last_repeating = -1
         for i, c in enumerate(s):
-            if c in indexes and last_repeating < indexes[c]:
+            if c in indexes and indexes[c] > last_repeating:
                 last_repeating = indexes[c]
             if i - last_repeating > longest:
                 longest = i - last_repeating
             indexes[c] = i
-
         return longest
 
 
@@ -106,5 +102,5 @@ if __name__ == '__main__':
     # print solution.lengthOfLongestSubstring(s)
     # print solution.lengthOfLongestSubstring2(s)
     for i, s in enumerate(l):
-        print '%s\t%s\t%s' % (i, s, solution.lengthOfLongestSubstring3(s))
+        print '%s\t%s\t%s' % (i, s, solution.lengthOfLongestSubstring2(s))
         print '%s\t%s\t%s' % (i, s, solution.lengthOfLongestSubstring4(s))
