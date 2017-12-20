@@ -35,7 +35,7 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
-        nums1.extend(nums2)
+        nums1 = nums1 + nums2
         nums1.sort()
         l = len(nums1)
         if l == 0:
@@ -54,6 +54,7 @@ class Solution(object):
         :rtype: float
         """
         all_nums = nums1 + nums2
+        print nums1, nums2, all_nums
         len_all = len(all_nums)
         all_nums.sort()
 
@@ -84,5 +85,5 @@ if __name__ == '__main__':
     # print solution.findMedianSortedArrays2(n3, n4)
     # print solution.findMedianSortedArrays2(n5, n6)
     # print solution.findMedianSortedArrays2(n4, n4)
-    print solution.findMedianSortedArrays2(n4, n5)
+    # print solution.findMedianSortedArrays2(n4, n5)
     print solution.findMedianSortedArrays3(n4, n5)
