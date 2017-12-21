@@ -1,5 +1,6 @@
 import datetime
 
+
 class Solution(object):
     def reverse(self, x):
         max_int32 = 2147483647
@@ -42,7 +43,7 @@ class Solution(object):
             x = x / 10
         if abs(res) > 0x7FFFFFFF:
             return 0
-        return res*a
+        return res * a
 
 
 if __name__ == '__main__':
@@ -65,7 +66,7 @@ if __name__ == '__main__':
     begin = datetime.datetime.now()
     aa = getIndices.reverse(h)
     end = datetime.datetime.now()
-    print aa, end-begin
+    print aa, end - begin
 
     begin = datetime.datetime.now()
     aa = getIndices.reverse1(h)
@@ -77,7 +78,7 @@ if __name__ == '__main__':
     end = datetime.datetime.now()
     print aa, end - begin
     aaaa = '1234'
-    bbbb = [1,2,3,4,1]
+    bbbb = [1, 2, 3, 4, 1]
     bbbb.reverse()
     print bbbb
     print bbbb.sort()
